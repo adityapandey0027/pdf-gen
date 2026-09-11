@@ -1,0 +1,394 @@
+{
+  "data": {
+    "id": "INV-2026-0094",
+    "jobcard_no": "JC-2026-0412",
+    "order_no": "ORD-88491",
+    "sap_ref_no": "SAP-99412",
+    "invoice_date": "2026-09-10",
+    "jobcard_date": "2026-09-08",
+    "created_at": "2026-09-08T11:30:00",
+    "place_of_supply": "22-CHHATTISGARH",
+    "invoice_type": "SPARE",
+    "meter_reading": "142850",
+    "reverse_charge_applicable": false,
+    "repair_type": {
+      "repair_type_name": "Major Maintenance & Engine Overhaul"
+    },
+    "customer": {
+      "customer_name": "ABC Logistics & Transport Solutions Pvt Ltd",
+      "address": "Plot No. 45, Industrial Estate, Korba, Chhattisgarh - 495677",
+      "customer_pan": "ABCDE1234F",
+      "gstin": "22ABCDE1234F1Z5"
+    },
+    "vehicle": {
+      "vehicle_model": "Tata Prima 2830.K",
+      "registration_number": "CG10AB1234",
+      "chassis_no": "MAT1234567890ABCD",
+      "aggregate_no": "AGG-99201",
+      "engine_no": "ENG-77889911",
+      "vehicle_owner": "ABC Logistics Pvt Ltd"
+    },
+    "items": [
+      {
+        "qty": 2,
+        "discount": 100,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-101",
+          "description": "Pressure Plate Heavy Vehicle \n Pressure Plate Heavy Vehicle\n Pressure Plate Heavy Vehicle \n Pressure Plate Heavy Vehicle",
+          "hsn_sac_code": "84212300",
+          "standard_rate": 1250,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 50,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-102",
+          "description": "Fuel Filter Element (Primary)",
+          "hsn_sac_code": "84212300",
+          "standard_rate": 850,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 4,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-103",
+          "description": "Engine Synthetic Oil 15W40 (5 Litre Can)",
+          "hsn_sac_code": "27101981",
+          "standard_rate": 3200,
+          "item_type": "SPARE",
+          "uom": "CAN"
+        }
+      },
+      {
+        "qty": 2,
+        "discount": 200,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-104",
+          "description": "Heavy Duty Air Filter Set",
+          "hsn_sac_code": "84213100",
+          "standard_rate": 21000,
+          "item_type": "SPARE",
+          "uom": "SET"
+        }
+      },
+      {
+        "qty": 6,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-105",
+          "description": "Brake Lining Rear Axle Set",
+          "hsn_sac_code": "87083000",
+          "standard_rate": 18000,
+          "item_type": "SPARE",
+          "uom": "SET"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 150,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-106",
+          "description": "Clutch Disc Assembly (380mm)",
+          "hsn_sac_code": "87089300",
+          "standard_rate": 125000,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-107",
+          "description": "Pressure Plate Heavy Vehicle",
+          "hsn_sac_code": "87089300",
+          "standard_rate": 89000,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 50,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-102",
+          "description": "Fuel Filter Element (Primary)",
+          "hsn_sac_code": "84212300",
+          "standard_rate": 850,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 4,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-103",
+          "description": "Engine Synthetic Oil 15W40 (5 Litre Can)",
+          "hsn_sac_code": "27101981",
+          "standard_rate": 3200,
+          "item_type": "SPARE",
+          "uom": "CAN"
+        }
+      },
+      {
+        "qty": 2,
+        "discount": 200,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-104",
+          "description": "Heavy Duty Air Filter Set",
+          "hsn_sac_code": "84213100",
+          "standard_rate": 21000,
+          "item_type": "SPARE",
+          "uom": "SET"
+        }
+      },
+      {
+        "qty": 6,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-105",
+          "description": "Brake Lining Rear Axle Set",
+          "hsn_sac_code": "87083000",
+          "standard_rate": 18000,
+          "item_type": "SPARE",
+          "uom": "SET"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 150,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-106",
+          "description": "Clutch Disc Assembly (380mm)",
+          "hsn_sac_code": "87089300",
+          "standard_rate": 125000,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-107",
+          "description": "Pressure Plate Heavy Vehicle",
+          "hsn_sac_code": "87089300",
+          "standard_rate": 89000,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 50,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-102",
+          "description": "Fuel Filter Element (Primary)",
+          "hsn_sac_code": "84212300",
+          "standard_rate": 850,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 4,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-103",
+          "description": "Engine Synthetic Oil 15W40 (5 Litre Can)",
+          "hsn_sac_code": "27101981",
+          "standard_rate": 3200,
+          "item_type": "SPARE",
+          "uom": "CAN"
+        }
+      },
+      {
+        "qty": 2,
+        "discount": 200,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-104",
+          "description": "Heavy Duty Air Filter Set",
+          "hsn_sac_code": "84213100",
+          "standard_rate": 21000,
+          "item_type": "SPARE",
+          "uom": "SET"
+        }
+      },
+      {
+        "qty": 6,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-105",
+          "description": "Brake Lining Rear Axle Set",
+          "hsn_sac_code": "87083000",
+          "standard_rate": 18000,
+          "item_type": "SPARE",
+          "uom": "SET"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 150,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-106",
+          "description": "Clutch Disc Assembly (380mm)",
+          "hsn_sac_code": "87089300",
+          "standard_rate": 125000,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-107",
+          "description": "Pressure Plate Heavy Vehicle \n Pressure Plate Heavy Vehicle\n Pressure Plate Heavy Vehicle \n Pressure Plate Heavy Vehicle",
+          "hsn_sac_code": "87089300",
+          "standard_rate": 89000,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 2,
+        "discount": 50,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-108",
+          "description": "Coolant Heavy Duty Concentrated (5L)",
+          "hsn_sac_code": "38200000",
+          "standard_rate": 14000,
+          "item_type": "SPARE",
+          "uom": "CAN"
+        }
+      },
+      {
+        "qty": 2,
+        "discount": 100,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-109",
+          "description": "Front Wheel Bearing Kit",
+          "hsn_sac_code": "84821010",
+          "standard_rate": 340000,
+          "item_type": "SPARE",
+          "uom": "SET"
+        }
+      },
+      {
+        "qty": 4,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-110",
+          "description": "Grease High Temp Cartridge (1kg)",
+          "hsn_sac_code": "27101988",
+          "standard_rate": 450,
+          "item_type": "SPARE",
+          "uom": "PCS"
+        }
+      },
+      {
+        "qty": 1,
+        "discount": 0,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-111",
+          "description": "Fan Belt V-Ribbed Premium",
+          "hsn_sac_code": "40103110",
+          "standard_rate": 1150,
+          "item_type": "SPARE",
+          "uom": "EA"
+        }
+      },
+      {
+        "qty": 2,
+        "discount": 80,
+        "cgst_per": 9,
+        "sgst_per": 9,
+        "igst_per": 0,
+        "item": {
+          "code": "SPR-112",
+          "description": "Wiper Blade Heavy Duty 24 inch",
+          "hsn_sac_code": "85129000",
+          "standard_rate": 650,
+          "item_type": "SPARE",
+          "uom": "PAIR"
+        }
+      }
+    ]
+  }
+}
