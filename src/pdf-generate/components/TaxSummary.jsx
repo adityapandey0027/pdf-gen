@@ -15,7 +15,7 @@ export default function TaxSummary({
     <div className="mt-2 text-[10px] font-sans">
       <table className="w-[50%] border-collapse border border-black text-[9.5px]">
         <thead>
-          <tr className="bg-gray-100">
+          <tr>
             <th className="border border-black font-bold p-1 text-center">Tax %</th>
             <th className="border border-black font-bold p-1 text-right">Taxable Amount</th>
             {isInterState ? (
@@ -44,8 +44,8 @@ export default function TaxSummary({
         </tbody>
       </table>
 
-      <div className="mt-2 font-bold uppercase">
-        AMOUNT IN WORDS: {amountToWordsINR(roundedGrand)} RUPEES ONLY
+      <div className="mt-3 uppercase">
+        <span className="font-bold">AMOUNT IN WORDS:</span> {amountToWordsINR(roundedGrand)} RUPEES ONLY
       </div>
       <div className="font-bold">
         Reverse Charges Applicable: {reverseCharge ? "Yes" : "No"}
