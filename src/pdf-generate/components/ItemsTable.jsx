@@ -116,7 +116,7 @@ export default function ItemsTable({
 
             <tbody>
                 <tr className="invoice-category-row">
-                    <td colSpan={totalCols} className="border border-black font-bold p-1 text-left align-bottom bg-white">
+                    <td colSpan={totalCols} className="border border-black font-bold pt-1 pb-0 px-1 text-left align-bottom bg-white">
                         {isSpareInvoice ? "SPARES BILL :" : "LABOUR BILL :"}
                     </td>
                 </tr>

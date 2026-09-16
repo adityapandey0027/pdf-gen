@@ -32,7 +32,7 @@ export default function Header({ invoice, pageNumber, totalPages }) {
            
           </tr>
           <tr>
-            <td colSpan={2} className="border-none text-center pt-2">
+            <td colSpan={2} className="border-none text-center pt-0">
               <div className="text-lg font-bold">TAX INVOICE</div>
               <div className="text-[10px]">CREDIT BILL</div>
             </td>
@@ -46,16 +46,50 @@ export default function Header({ invoice, pageNumber, totalPages }) {
             <td className="w-[52%] align-top border-none p-0">
               <table className="border-none">
                 <tbody>
-                  <InfoRow label="INVOICE NO" value={invoice.id} labelWidth="w-24" />
-                  <InfoRow label="JOB CARD NO" value={invoice.jobcard_no} labelWidth="w-24" />
-                  <InfoRow label="ORDER NO" value={invoice.order_no} labelWidth="w-24" />
-                  <InfoRow label="SAP REF NO" value={invoice.sap_ref_no} labelWidth="w-24" />
+                  <InfoRow label="INVOICE NO" value={invoice.id} labelWidth="w-32" />
+                  <InfoRow label="JOB CARD NO" value={invoice.jobcard_no} labelWidth="w-32" />
+                  <InfoRow label="ORDER NO" value={invoice.order_no} labelWidth="w-32" />
+                  <InfoRow label="SAP REF NO" value={invoice.sap_ref_no} labelWidth="w-32" />
                   <tr>
-                    <td className="w-24 font-bold align-top py-0.5">CUSTOMER</td>
+                    <td className="w-32 font-bold align-top py-0.5">CUSTOMER</td>
                     <td className="py-0.5 align-top">
-                      : {invoice.customer?.customer_name}
-                      <br />
-                      &nbsp;&nbsp;{invoice.customer?.address}
+                      <div className="flex">
+                        <span className="mr-1">:</span>
+                        <div className="break-words">
+                          {(() => {
+                            const formatText = (text, maxLength) => {
+                              if (!text) return [];
+                              const words = text.split(" ");
+                              const lines = [];
+                              let currentLine = "";
+                              words.forEach((word) => {
+                                if ((currentLine + word).length > maxLength) {
+                                  if (currentLine) lines.push(currentLine.trim());
+                                  currentLine = word + " ";
+                                } else {
+                                  currentLine += word + " ";
+                                }
+                              });
+                              if (currentLine) lines.push(currentLine.trim());
+                              return lines;
+                            };
+
+                            const nameLines = formatText(invoice.customer?.customer_name, 30);
+                            const addressLines = formatText(invoice.customer?.address, 30);
+
+                            return (
+                              <>
+                                {nameLines.map((line, i) => (
+                                  <div key={`name-${i}`}>{line}</div>
+                                ))}
+                                {addressLines.map((line, i) => (
+                                  <div key={`addr-${i}`}>{line}</div>
+                                ))}
+                              </>
+                            );
+                          })()}
+                        </div>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
