@@ -77,12 +77,23 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
     const { rows } = computedData;
     const pages = [];
 
-    const page1Limit = pageCapacities?.page1Max || 7;
-
-    const isThickItem = (r) => {
-      if (!r.description) return false;
-      const desc = String(r.description);
-      return desc.includes('\n') || desc.length > 45;
+    const estimateLines = (r) => {
+      let descLines = 0;
+      if (r.description) {
+        const desc = String(r.description);
+        const parts = desc.split('\n');
+        for (const part of parts) {
+          // At 11px font in a ~16% width column, ~20 characters fit per line
+          descLines += Math.max(1, Math.ceil(part.length / 20));
+        }
+      } else {
+        descLines = 1;
+      }
+      // 1 line for the code + the description lines
+      const totalItemLines = 1 + descLines;
+      
+      // The CGST/SGST/IGST columns render as 2 lines (e.g., '9%' \n '216.00')
+      return Math.max(2, totalItemLines);
     };
 
     let runningTaxable = 0, runningCgst = 0, runningSgst = 0, runningIgst = 0, runningGrand = 0;
@@ -91,23 +102,56 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
 
     while (currentIdx < rows.length || (rows.length === 0 && pageNum === 1)) {
       const remainingRows = rows.length - currentIdx;
-      let currentCapacity;
+      let currentCapacity = 0;
 
       if (pageNum === 1) {
-        currentCapacity = remainingRows <= page1Limit ? page1Limit : page1Limit;
+        const prefLines = 20;
+        const maxLines = 23;
+        let linesCount = 0;
+        for (let i = currentIdx; i < rows.length; i++) {
+          const itemLines = estimateLines(rows[i]);
+          if (linesCount + itemLines > maxLines && currentCapacity > 0) {
+            break;
+          }
+          linesCount += itemLines;
+          currentCapacity++;
+          if (linesCount >= prefLines) {
+            break;
+          }
+        }
       } else {
-        const nextBatch = rows.slice(currentIdx, currentIdx + 10);
-        const hasThick = nextBatch.some(isThickItem);
+        const prefLines = 26;
+        const maxLines = 28;
+        const lastPageMaxLines = 16; 
         
-        const middleLimit = Math.min(pageCapacities?.middleMax || 15, hasThick ? 9 : 10);
-        const lastPageLimit = Math.min(pageCapacities?.lastPageMax || 10, hasThick ? 5 : 7);
-
-        if (remainingRows <= lastPageLimit) {
-            currentCapacity = remainingRows;
+        let remainingLines = 0;
+        for (let i = currentIdx; i < rows.length; i++) {
+          remainingLines += estimateLines(rows[i]);
+        }
+        
+        if (remainingLines <= lastPageMaxLines) {
+          currentCapacity = remainingRows;
         } else {
-            currentCapacity = Math.min(middleLimit, remainingRows - 1);
+          let linesCount = 0;
+          for (let i = currentIdx; i < rows.length; i++) {
+            const itemLines = estimateLines(rows[i]);
+            if (linesCount + itemLines > maxLines && currentCapacity > 0) {
+              break; 
+            }
+            linesCount += itemLines;
+            currentCapacity++;
+            if (linesCount >= prefLines) {
+              break;
+            }
+          }
+          
+          if (currentCapacity === remainingRows) {
+             currentCapacity = Math.max(1, remainingRows - 1);
+          }
         }
       }
+      
+      if (currentCapacity === 0) currentCapacity = 1;
 
       const pageRows = rows.slice(currentIdx, currentIdx + currentCapacity);
       currentIdx += pageRows.length;
