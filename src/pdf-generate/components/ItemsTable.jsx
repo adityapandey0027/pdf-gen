@@ -15,7 +15,7 @@ export default function ItemsTable({
     const headerClass =
         "border border-black bg-[#D9D9D9] text-black custom-header text-[12px] font-bold px-[2px] py-1 text-center align-top break-words tracking-tight";
     const cellClass =
-        "border border-black px-[2px] py-1 text-[12px] leading-[1.15] align-top break-words tracking-tight";
+        "border border-black px-[2px] py-1 text-[11px] leading-[1.15] align-top break-words tracking-tight";
 
     const totalCols = isSpareInvoice
         ? isInterState
