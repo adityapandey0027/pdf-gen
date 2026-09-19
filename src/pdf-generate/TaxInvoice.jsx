@@ -65,7 +65,7 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
     const lastPageAvailableHeight =
       PRINT_PAGE_HEIGHT_PX - headerHeight - tableHeaderHeight - subtotalHeight - taxSummaryHeight - footerHeight - metaFooterHeight;
 
-    const page1Max = Math.max(1, Math.floor(page1AvailableHeight / singleRowHeight));
+    const page1Max = 7; // Front page limit as requested
     const middleMax = Math.max(1, Math.floor(middleAvailableHeight / singleRowHeight));
     const lastPageMax = Math.max(1, Math.floor(lastPageAvailableHeight / singleRowHeight));
 
@@ -77,9 +77,9 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
     const { rows } = computedData;
     const pages = [];
 
-    const page1Limit = pageCapacities?.page1Max || 5;
-    const middleLimit = pageCapacities?.middleMax || 10;
-    const lastPageLimit = pageCapacities?.lastPageMax || 5;
+    const page1Limit = pageCapacities?.page1Max || 7;
+    const middleLimit = pageCapacities?.middleMax || 15;
+    const lastPageLimit = pageCapacities?.lastPageMax || 10;
 
     let runningTaxable = 0, runningCgst = 0, runningSgst = 0, runningIgst = 0, runningGrand = 0;
     let currentIdx = 0;

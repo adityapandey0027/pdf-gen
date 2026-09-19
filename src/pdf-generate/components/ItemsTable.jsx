@@ -27,14 +27,14 @@ export default function ItemsTable({
 
     const spareIntraWidths = [
         "4.3%",   // S.NO
-        "16.8%",  // CODE / DESCRIPTION
-        "8.5%",   // HSN/SAC
-        "4.7%",   // UOM
-        "5.6%",   // QTY
-        "7.6%",   // MRP
-        "9.3%",   // PRICE
-        "7.5%",   // DISC
-        "9.3%",   // TAXABLE
+        "19.8%",  // CODE / DESCRIPTION (widened)
+        "8%",     // HSN/SAC
+        "4.5%",   // UOM
+        "5.1%",   // QTY
+        "7%",     // MRP
+        "8.8%",   // PRICE
+        "7%",     // DISC
+        "9.1%",   // TAXABLE
         "8.5%",   // CGST
         "8.3%",   // SGST
         "9.6%",   // AMOUNT
@@ -42,41 +42,41 @@ export default function ItemsTable({
 
     const spareInterWidths = [
         "4.5%",   // S.NO
-        "18.5%",  // CODE / DESCRIPTION
-        "9%",      // HSN/SAC
-        "5%",      // UOM
-        "6%",      // QTY
-        "8%",      // MRP
-        "10%",     // PRICE
-        "8%",      // DISC
-        "10%",     // TAXABLE
-        "10%",     // IGST
-        "11%",     // AMOUNT
+        "21.5%",  // CODE / DESCRIPTION (widened)
+        "8.5%",   // HSN/SAC
+        "4.5%",   // UOM
+        "5.5%",   // QTY
+        "7.5%",   // MRP
+        "9.5%",   // PRICE
+        "7.5%",   // DISC
+        "10%",    // TAXABLE
+        "10%",    // IGST
+        "11%",    // AMOUNT
     ];
 
     const labourIntraWidths = [
         "4.5%",   // S.NO
-        "20%",     // CODE / DESCRIPTION
-        "9%",      // HSN/SAC
-        "6%",      // QTY
-        "10%",     // LABOUR VALUE
-        "8%",      // DISC
-        "10%",     // TAXABLE
-        "9%",      // CGST
-        "9%",      // SGST
+        "22%",    // CODE / DESCRIPTION (widened)
+        "8.5%",   // HSN/SAC
+        "5.5%",   // QTY
+        "9.5%",   // LABOUR VALUE
+        "7.5%",   // DISC
+        "10%",    // TAXABLE
+        "9%",     // CGST
+        "9%",     // SGST
         "14.5%",  // AMOUNT
     ];
 
     const labourInterWidths = [
-        "5%",      // S.NO
-        "21%",     // CODE / DESCRIPTION
-        "10%",     // HSN/SAC
-        "7%",      // QTY
-        "11%",     // LABOUR VALUE
-        "9%",      // DISC
-        "11%",     // TAXABLE
-        "12%",     // IGST
-        "14%",     // AMOUNT
+        "5%",     // S.NO
+        "23%",    // CODE / DESCRIPTION (widened)
+        "9.5%",   // HSN/SAC
+        "6.5%",   // QTY
+        "10.5%",  // LABOUR VALUE
+        "8.5%",   // DISC
+        "10.5%",  // TAXABLE
+        "12%",    // IGST
+        "14.5%",  // AMOUNT
     ];
 
     let columnWidths;

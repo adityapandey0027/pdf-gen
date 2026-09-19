@@ -31,12 +31,14 @@ export default function PageSubtotals({
   return (
     <tfoot>
       <tr className="font-bold border-b border-black">
-        <td
-          colSpan={preDiscColSpan}
-          className="border-t border-b border-l border-r-0 border-black text-center p-1"
-        >
+        <td className="border-t border-b border-l border-r-0 border-black p-1"></td>
+        <td className="border-t border-b border-l-0 border-r-0 border-black text-center p-1">
           Subtotal
         </td>
+        <td
+          colSpan={preDiscColSpan - 2}
+          className="border-t border-b border-l-0 border-r-0 border-black p-1"
+        ></td>
         <td className="border border-black text-right p-1">
           {fmt(pageSubtotal.discAmt)}
         </td>
