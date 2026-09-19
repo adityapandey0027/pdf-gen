@@ -5,7 +5,7 @@ export default function Footer({ isLastPage }) {
   if (!isLastPage) return null;
 
   return (
-    <div className="mt-4 text-[12px] leading-[1.7] font-sans">
+    <div className="mt-4 text-[11px] leading-[1.7] font-sans">
       {/* Terms & Conditions */}
       <div>
         <div className="font-bold text-[15px] uppercase">
