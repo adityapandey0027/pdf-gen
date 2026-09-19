@@ -10,7 +10,7 @@ function InfoRow({ label, value, labelWidth = "w-32" }) {
   );
 }
 
-export default function Header({ invoice, pageNumber, totalPages }) {
+export default function Header({ invoice, pageNumber, totalPages, isSpareInvoice}) {
   return (
     <div className="flex flex-col gap-1">
       <table className="w-full border-none">
@@ -104,6 +104,7 @@ export default function Header({ invoice, pageNumber, totalPages }) {
                   <InfoRow label="PLACE OF SUPPLY" value={invoice.place_of_supply} labelWidth="w-32" />
                   <InfoRow label="CUSTOMER PAN" value={invoice.customer?.customer_pan} labelWidth="w-32" />
                   <InfoRow label="GSTIN / UIN" value={invoice.customer?.gstin} labelWidth="w-32" />
+                  {isSpareInvoice && (<InfoRow label="VEHICLE OWNER" value={invoice.vehicle?.vehicle_owner} labelWidth="w-32" /> )}
                 </tbody>
               </table>
             </td>
