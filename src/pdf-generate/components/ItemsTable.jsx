@@ -35,9 +35,9 @@ export default function ItemsTable({
         "8.5%",   // PRICE
         "6%",     // DISC
         "9.5%",   // TAXABLE
-        "7.5%",   // CGST
-        "7.5%",   // SGST
-        "14.7%",  // AMOUNT
+        "8.5%",   // CGST
+        "8.5%",   // SGST
+        "12.7%",  // AMOUNT
     ];
 
     const spareInterWidths = [
@@ -50,8 +50,8 @@ export default function ItemsTable({
         "8.5%",   // PRICE
         "6.5%",   // DISC
         "11%",    // TAXABLE
-        "11%",    // IGST
-        "15.5%",  // AMOUNT
+        "12%",    // IGST
+        "14.5%",  // AMOUNT
     ];
 
     const labourIntraWidths = [
@@ -62,9 +62,9 @@ export default function ItemsTable({
         "10.5%",  // LABOUR VALUE
         "7.5%",   // DISC
         "10%",    // TAXABLE
-        "8.5%",   // CGST
-        "8.5%",   // SGST
-        "16.5%",  // AMOUNT
+        "9.5%",   // CGST
+        "9.5%",   // SGST
+        "14.5%",  // AMOUNT
     ];
 
     const labourInterWidths = [
@@ -75,8 +75,8 @@ export default function ItemsTable({
         "12%",    // LABOUR VALUE
         "8.5%",   // DISC
         "11.5%",  // TAXABLE
-        "11%",    // IGST
-        "15.5%",  // AMOUNT
+        "12%",    // IGST
+        "14.5%",  // AMOUNT
     ];
 
     let columnWidths;
