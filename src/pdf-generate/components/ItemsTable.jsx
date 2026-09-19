@@ -15,7 +15,7 @@ export default function ItemsTable({
     const headerClass =
         "border border-black bg-[#D9D9D9] text-black custom-header text-[12px] font-bold p-1 text-center align-top";
     const cellClass =
-        "border border-black p-1 text-[12px] leading-[1.15] align-top";
+        "border border-black px-[2px] py-1 text-[12px] leading-[1.15] align-top";
 
     const totalCols = isSpareInvoice
         ? isInterState
@@ -27,54 +27,54 @@ export default function ItemsTable({
 
     const spareIntraWidths = [
         "4.3%",   // S.NO
-        "19.8%",  // CODE / DESCRIPTION (widened)
-        "8%",     // HSN/SAC
-        "4.5%",   // UOM
-        "5.1%",   // QTY
-        "7%",     // MRP
-        "8.8%",   // PRICE
-        "7%",     // DISC
-        "9.1%",   // TAXABLE
+        "17.8%",  // CODE / DESCRIPTION
+        "7.5%",   // HSN/SAC
+        "4.2%",   // UOM
+        "4.5%",   // QTY
+        "8.5%",   // MRP
+        "9.3%",   // PRICE
+        "6.5%",   // DISC
+        "9.3%",   // TAXABLE
         "8.5%",   // CGST
-        "8.3%",   // SGST
-        "9.6%",   // AMOUNT
+        "8.5%",   // SGST
+        "11.1%",  // AMOUNT
     ];
 
     const spareInterWidths = [
         "4.5%",   // S.NO
-        "21.5%",  // CODE / DESCRIPTION (widened)
-        "8.5%",   // HSN/SAC
-        "4.5%",   // UOM
-        "5.5%",   // QTY
-        "7.5%",   // MRP
+        "19.5%",  // CODE / DESCRIPTION
+        "7.5%",   // HSN/SAC
+        "4.2%",   // UOM
+        "4.8%",   // QTY
+        "8.5%",   // MRP
         "9.5%",   // PRICE
-        "7.5%",   // DISC
-        "10%",    // TAXABLE
-        "10%",    // IGST
-        "11%",    // AMOUNT
+        "6.5%",   // DISC
+        "10.5%",  // TAXABLE
+        "11.5%",  // IGST
+        "13%",    // AMOUNT
     ];
 
     const labourIntraWidths = [
         "4.5%",   // S.NO
-        "22%",    // CODE / DESCRIPTION (widened)
+        "20%",    // CODE / DESCRIPTION
         "8.5%",   // HSN/SAC
         "5.5%",   // QTY
-        "9.5%",   // LABOUR VALUE
+        "10%",    // LABOUR VALUE
         "7.5%",   // DISC
         "10%",    // TAXABLE
         "9%",     // CGST
         "9%",     // SGST
-        "14.5%",  // AMOUNT
+        "16%",    // AMOUNT
     ];
 
     const labourInterWidths = [
         "5%",     // S.NO
-        "23%",    // CODE / DESCRIPTION (widened)
+        "21%",    // CODE / DESCRIPTION
         "9.5%",   // HSN/SAC
         "6.5%",   // QTY
-        "10.5%",  // LABOUR VALUE
+        "11.5%",  // LABOUR VALUE
         "8.5%",   // DISC
-        "10.5%",  // TAXABLE
+        "11.5%",  // TAXABLE
         "12%",    // IGST
         "14.5%",  // AMOUNT
     ];

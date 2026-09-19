@@ -78,8 +78,12 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
     const pages = [];
 
     const page1Limit = pageCapacities?.page1Max || 7;
-    const middleLimit = pageCapacities?.middleMax || 15;
-    const lastPageLimit = pageCapacities?.lastPageMax || 10;
+
+    const isThickItem = (r) => {
+      if (!r.description) return false;
+      const desc = String(r.description);
+      return desc.includes('\n') || desc.length > 45;
+    };
 
     let runningTaxable = 0, runningCgst = 0, runningSgst = 0, runningIgst = 0, runningGrand = 0;
     let currentIdx = 0;
@@ -92,7 +96,17 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
       if (pageNum === 1) {
         currentCapacity = remainingRows <= page1Limit ? page1Limit : page1Limit;
       } else {
-        currentCapacity = remainingRows <= lastPageLimit ? lastPageLimit : middleLimit;
+        const nextBatch = rows.slice(currentIdx, currentIdx + 10);
+        const hasThick = nextBatch.some(isThickItem);
+        
+        const middleLimit = Math.min(pageCapacities?.middleMax || 15, hasThick ? 9 : 10);
+        const lastPageLimit = Math.min(pageCapacities?.lastPageMax || 10, hasThick ? 5 : 7);
+
+        if (remainingRows <= lastPageLimit) {
+            currentCapacity = remainingRows;
+        } else {
+            currentCapacity = Math.min(middleLimit, remainingRows - 1);
+        }
       }
 
       const pageRows = rows.slice(currentIdx, currentIdx + currentCapacity);
