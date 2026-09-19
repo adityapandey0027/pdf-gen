@@ -13,7 +13,7 @@ export default function ItemsTable({
     roundedGrand,
 }) {
     const headerClass =
-        "border border-black bg-[#D9D9D9] text-black custom-header text-[12px] font-bold px-[2px] py-1 text-center align-top break-words tracking-tight";
+        "border border-black bg-[#D9D9D9] text-black custom-header text-[12px] font-bold px-1 py-1 text-center align-top break-words tracking-tight";
     const cellClass =
         "border border-black px-[2px] py-1 text-[11px] leading-[1.15] align-top break-words tracking-tight";
 
@@ -27,7 +27,7 @@ export default function ItemsTable({
 
     const spareIntraWidths = [
         "4.3%",   // S.NO
-        "16%",    // CODE / DESCRIPTION
+        "17%",    // CODE / DESCRIPTION
         "8.5%",   // HSN/SAC
         "4.2%",   // UOM
         "5%",     // QTY
@@ -37,12 +37,12 @@ export default function ItemsTable({
         "9.5%",   // TAXABLE
         "8.5%",   // CGST
         "8.5%",   // SGST
-        "10.7%",  // AMOUNT
+        "9.7%",   // AMOUNT
     ];
 
     const spareInterWidths = [
         "4.5%",   // S.NO
-        "17%",    // CODE / DESCRIPTION
+        "18%",    // CODE / DESCRIPTION
         "8.5%",   // HSN/SAC
         "4.2%",   // UOM
         "5.2%",   // QTY
@@ -51,12 +51,12 @@ export default function ItemsTable({
         "6.5%",   // DISC
         "11%",    // TAXABLE
         "12%",    // IGST
-        "12.5%",  // AMOUNT
+        "11.5%",  // AMOUNT
     ];
 
     const labourIntraWidths = [
         "4.5%",   // S.NO
-        "18.5%",  // CODE / DESCRIPTION
+        "19.5%",  // CODE / DESCRIPTION
         "9%",     // HSN/SAC
         "6%",     // QTY
         "10.5%",  // LABOUR VALUE
@@ -64,19 +64,19 @@ export default function ItemsTable({
         "10%",    // TAXABLE
         "9%",     // CGST
         "9%",     // SGST
-        "16%",    // AMOUNT
+        "15%",    // AMOUNT
     ];
 
     const labourInterWidths = [
         "5%",     // S.NO
-        "19.5%",  // CODE / DESCRIPTION
+        "20.5%",  // CODE / DESCRIPTION
         "10%",    // HSN/SAC
         "6.5%",   // QTY
         "12%",    // LABOUR VALUE
         "8.5%",   // DISC
         "12%",    // TAXABLE
         "12%",    // IGST
-        "14.5%",  // AMOUNT
+        "13.5%",  // AMOUNT
     ];
 
     let columnWidths;
@@ -98,7 +98,7 @@ export default function ItemsTable({
             <thead>
                 <tr className="custom-header-row">
                     <th className={headerClass}>S.NO</th>
-                    <th className={headerClass}>CODE / DESCRIPTION</th>
+                    <th className={`${headerClass} whitespace-nowrap`}>CODE / DESCRIPTION</th>
                     <th className={headerClass}>HSN/SAC<br />CODE</th>
                     {isSpareInvoice && <th className={headerClass}>UOM</th>}
                     <th className={headerClass}>QTY</th>
