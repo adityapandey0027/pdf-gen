@@ -13,7 +13,7 @@ export default function ItemsTable({
     roundedGrand,
 }) {
     const headerClass =
-        "border border-black bg-[#D9D9D9] text-black custom-header text-[12px] font-bold px-1 py-1 text-center align-top break-words tracking-tight";
+        "border border-black bg-[#D9D9D9] text-black custom-header text-[11px] font-bold px-[2px] py-1 text-center align-top break-words tracking-tight";
     const cellClass =
         "border border-black px-[2px] py-1 text-[11px] leading-[1.15] align-top break-words tracking-tight";
 
@@ -29,29 +29,29 @@ export default function ItemsTable({
         "4.3%",   // S.NO
         "16.5%",  // CODE / DESCRIPTION
         "8%",     // HSN/SAC
-        "3.5%",   // UOM
-        "4.5%",   // QTY
+        "4.5%",   // UOM
+        "5%",     // QTY
         "8%",     // MRP
         "8.5%",   // PRICE
         "6%",     // DISC
-        "8.5%",   // TAXABLE
+        "9.5%",   // TAXABLE
         "7.5%",   // CGST
         "7.5%",   // SGST
-        "17.2%",  // AMOUNT
+        "14.7%",  // AMOUNT
     ];
 
     const spareInterWidths = [
         "4.5%",   // S.NO
         "17.5%",  // CODE / DESCRIPTION
         "8%",     // HSN/SAC
-        "3.5%",   // UOM
-        "4.5%",   // QTY
+        "4.5%",   // UOM
+        "5%",     // QTY
         "8%",     // MRP
         "8.5%",   // PRICE
         "6.5%",   // DISC
-        "10.5%",  // TAXABLE
+        "11%",    // TAXABLE
         "11%",    // IGST
-        "17.5%",  // AMOUNT
+        "15.5%",  // AMOUNT
     ];
 
     const labourIntraWidths = [
@@ -62,9 +62,9 @@ export default function ItemsTable({
         "10.5%",  // LABOUR VALUE
         "7.5%",   // DISC
         "10%",    // TAXABLE
-        "9%",     // CGST
-        "9%",     // SGST
-        "15.5%",  // AMOUNT
+        "8.5%",   // CGST
+        "8.5%",   // SGST
+        "16.5%",  // AMOUNT
     ];
 
     const labourInterWidths = [
@@ -74,9 +74,9 @@ export default function ItemsTable({
         "6%",     // QTY
         "12%",    // LABOUR VALUE
         "8.5%",   // DISC
-        "12%",    // TAXABLE
-        "12%",    // IGST
-        "14%",    // AMOUNT
+        "11.5%",  // TAXABLE
+        "11%",    // IGST
+        "15.5%",  // AMOUNT
     ];
 
     let columnWidths;
