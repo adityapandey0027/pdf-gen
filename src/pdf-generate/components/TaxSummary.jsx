@@ -12,8 +12,8 @@ export default function TaxSummary({
   reverseCharge,
 }) {
   return (
-    <div className="mt-2 text-[10px] font-sans">
-      <table className="w-[50%] border-collapse border border-black text-[9.5px]">
+    <div className="mt-2 text-[12px] font-sans">
+      <table className="w-[50%] border-collapse border border-black text-[11.5px]">
         <thead>
           <tr>
             <th className="border border-black font-bold p-1 text-center">Tax %</th>

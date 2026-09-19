@@ -167,7 +167,7 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
         return (
           <div
             key={page.pageNumber}
-            className="print-page-container relative mx-auto max-w-[900px] bg-white p-8 text-[11px] leading-[1.25] text-black shadow print:shadow-none print:p-0 font-sans mb-8 print:mb-0 print:break-after-page flex flex-col justify-between min-h-[1050px] print:min-h-0 pb-10"
+            className="print-page-container relative mx-auto max-w-[900px] bg-white p-8 text-[13px] leading-[1.25] text-black shadow print:shadow-none print:p-0 font-sans mb-8 print:mb-0 print:break-after-page flex flex-col justify-between min-h-[1050px] print:min-h-0 pb-10"
           >
             <div className="pb-8">
               <Header invoice={invoice} pageNumber={page.pageNumber} totalPages={page.totalPages} isSpareInvoice={isSpareInvoice} />

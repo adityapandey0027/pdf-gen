@@ -13,9 +13,9 @@ export default function ItemsTable({
     roundedGrand,
 }) {
     const headerClass =
-        "border border-black bg-[#D9D9D9] text-black custom-header text-[10px] font-bold p-1 text-center align-top";
+        "border border-black bg-[#D9D9D9] text-black custom-header text-[12px] font-bold p-1 text-center align-top";
     const cellClass =
-        "border border-black p-1 text-[10px] leading-[1.15] align-top";
+        "border border-black p-1 text-[12px] leading-[1.15] align-top";
 
     const totalCols = isSpareInvoice
         ? isInterState
@@ -88,7 +88,7 @@ export default function ItemsTable({
     }
 
     return (
-        <table className="invoice-items-table w-full border-collapse table-fixed mt-2 text-[10px] font-sans">
+        <table className="invoice-items-table w-full border-collapse table-fixed mt-2 text-[12px] font-sans">
             <colgroup>
                 {columnWidths.map((width, index) => (
                     <col key={index} style={{ width }} />

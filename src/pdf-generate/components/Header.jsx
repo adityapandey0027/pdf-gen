@@ -34,7 +34,7 @@ export default function Header({ invoice, pageNumber, totalPages, isSpareInvoice
           <tr>
             <td colSpan={2} className="border-none text-center pt-0">
               <div className="text-lg font-bold">TAX INVOICE</div>
-              <div className="text-[10px]">CREDIT BILL</div>
+              <div className="text-[12px]">CREDIT BILL</div>
             </td>
           </tr>
         </tbody>
