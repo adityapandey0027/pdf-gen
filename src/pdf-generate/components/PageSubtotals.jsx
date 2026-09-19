@@ -20,8 +20,8 @@ export default function PageSubtotals({
   // LABOUR + IntraState = 10 | LABOUR + InterState = 9
   const fullColSpan = isSpareInvoice
     ? isInterState
-      ? 10
-      : 11
+      ? 11
+      : 12
     : isInterState
     ? 9
     : 10;
@@ -98,13 +98,14 @@ export default function PageSubtotals({
 
       {isLastPage && roundOff !== 0 && (
         <tr className="font-bold text-[11px] tracking-tight">
+          <td colSpan={preDiscColSpan} className="border-none"></td>
           <td
-            colSpan={fullColSpan - 1}
+            colSpan={fullColSpan - preDiscColSpan - 1}
             className="border-t border-b border-l border-r-0 border-black text-right px-[2px] py-1 break-words pr-4"
           >
             ROUNDOFF (INR)
           </td>
-          <td className="border border-black text-right px-[2px] py-1 break-words">
+          <td className="border border-black text-right px-[2px] py-1 break-words whitespace-nowrap">
             {fmt(roundOff)}
           </td>
         </tr>
@@ -112,13 +113,14 @@ export default function PageSubtotals({
 
       {isLastPage && (
         <tr className="font-bold text-[11px] tracking-tight">
+          <td colSpan={preDiscColSpan} className="border-none"></td>
           <td
-            colSpan={fullColSpan - 1}
+            colSpan={fullColSpan - preDiscColSpan - 1}
             className="border-t border-b border-l border-r-0 border-black text-right px-[2px] py-1 break-words pr-4 uppercase"
           >
             GRAND TOTAL (INR)
           </td>
-          <td className="border border-black text-right px-[2px] py-1 break-words">
+          <td className="border border-black text-right px-[2px] py-1 break-words whitespace-nowrap">
             {fmt(roundedGrand)}
           </td>
         </tr>
