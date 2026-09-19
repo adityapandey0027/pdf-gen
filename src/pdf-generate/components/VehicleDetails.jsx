@@ -6,10 +6,10 @@ const sectionHeaderClass =
   "border border-black font-bold text-center px-1 h-4 text-black align-bottom leading-none";
 
 const cellClass =
-  "border border-black px-1 h-4 text-[10px] leading-none align-bottom";
+  "border border-black px-1 h-4 text-[12px] leading-none align-bottom";
 
   return (
-    <table className="w-full border-collapse mt-2 mb-0 text-[10px] font-sans">
+    <table className="w-full border-collapse mt-2 mb-0 text-[12px] font-sans">
       <tbody>
         <tr>
           <th colSpan={2} className={sectionHeaderClass}>

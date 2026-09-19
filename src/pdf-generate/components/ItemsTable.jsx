@@ -13,9 +13,9 @@ export default function ItemsTable({
     roundedGrand,
 }) {
     const headerClass =
-        "border border-black bg-[#D9D9D9] text-black custom-header text-[10px] font-bold p-1 text-center align-top";
+        "border border-black bg-[#D9D9D9] text-black custom-header text-[11px] font-bold px-[2px] py-1 text-center align-top break-words tracking-tight";
     const cellClass =
-        "border border-black p-1 text-[10px] leading-[1.15] align-top";
+        "border border-black px-[2px] py-1 text-[11px] leading-[1.15] align-top break-words tracking-tight";
 
     const totalCols = isSpareInvoice
         ? isInterState
@@ -27,56 +27,56 @@ export default function ItemsTable({
 
     const spareIntraWidths = [
         "4.3%",   // S.NO
-        "16.8%",  // CODE / DESCRIPTION
-        "8.5%",   // HSN/SAC
-        "4.7%",   // UOM
-        "5.6%",   // QTY
-        "7.6%",   // MRP
-        "9.3%",   // PRICE
-        "7.5%",   // DISC
-        "9.3%",   // TAXABLE
+        "16.5%",  // CODE / DESCRIPTION
+        "8%",     // HSN/SAC
+        "4.5%",   // UOM
+        "5%",     // QTY
+        "8%",     // MRP
+        "8.5%",   // PRICE
+        "6%",     // DISC
+        "9.5%",   // TAXABLE
         "8.5%",   // CGST
-        "8.3%",   // SGST
-        "9.6%",   // AMOUNT
+        "8.5%",   // SGST
+        "12.7%",  // AMOUNT
     ];
 
     const spareInterWidths = [
         "4.5%",   // S.NO
-        "18.5%",  // CODE / DESCRIPTION
-        "9%",      // HSN/SAC
-        "5%",      // UOM
-        "6%",      // QTY
-        "8%",      // MRP
-        "10%",     // PRICE
-        "8%",      // DISC
-        "10%",     // TAXABLE
-        "10%",     // IGST
-        "11%",     // AMOUNT
+        "17.5%",  // CODE / DESCRIPTION
+        "8%",     // HSN/SAC
+        "4.5%",   // UOM
+        "5%",     // QTY
+        "8%",     // MRP
+        "8.5%",   // PRICE
+        "6.5%",   // DISC
+        "11%",    // TAXABLE
+        "12%",    // IGST
+        "14.5%",  // AMOUNT
     ];
 
     const labourIntraWidths = [
         "4.5%",   // S.NO
-        "20%",     // CODE / DESCRIPTION
-        "9%",      // HSN/SAC
-        "6%",      // QTY
-        "10%",     // LABOUR VALUE
-        "8%",      // DISC
-        "10%",     // TAXABLE
-        "9%",      // CGST
-        "9%",      // SGST
+        "19.5%",  // CODE / DESCRIPTION
+        "9%",     // HSN/SAC
+        "5.5%",   // QTY
+        "10.5%",  // LABOUR VALUE
+        "7.5%",   // DISC
+        "10%",    // TAXABLE
+        "9.5%",   // CGST
+        "9.5%",   // SGST
         "14.5%",  // AMOUNT
     ];
 
     const labourInterWidths = [
-        "5%",      // S.NO
-        "21%",     // CODE / DESCRIPTION
-        "10%",     // HSN/SAC
-        "7%",      // QTY
-        "11%",     // LABOUR VALUE
-        "9%",      // DISC
-        "11%",     // TAXABLE
-        "12%",     // IGST
-        "14%",     // AMOUNT
+        "5%",     // S.NO
+        "20.5%",  // CODE / DESCRIPTION
+        "10%",    // HSN/SAC
+        "6%",     // QTY
+        "12%",    // LABOUR VALUE
+        "8.5%",   // DISC
+        "11.5%",  // TAXABLE
+        "12%",    // IGST
+        "14.5%",  // AMOUNT
     ];
 
     let columnWidths;
@@ -88,7 +88,7 @@ export default function ItemsTable({
     }
 
     return (
-        <table className="invoice-items-table w-full border-collapse table-fixed mt-2 text-[10px] font-sans">
+        <table className="invoice-items-table w-full border-collapse table-fixed mt-2 text-[12px] font-sans">
             <colgroup>
                 {columnWidths.map((width, index) => (
                     <col key={index} style={{ width }} />
@@ -98,7 +98,7 @@ export default function ItemsTable({
             <thead>
                 <tr className="custom-header-row">
                     <th className={headerClass}>S.NO</th>
-                    <th className={headerClass}>CODE / DESCRIPTION</th>
+                    <th className={`${headerClass} whitespace-nowrap`}>CODE / DESCRIPTION</th>
                     <th className={headerClass}>HSN/SAC<br />CODE</th>
                     {isSpareInvoice && <th className={headerClass}>UOM</th>}
                     <th className={headerClass}>QTY</th>

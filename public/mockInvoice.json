@@ -10,14 +10,14 @@
     "place_of_supply": "22-CHHATTISGARH",
     "vehicle_owner": "ABC Logistics Pvt Ltd",
     "invoice_type": "SPARE",
-    "meter_reading": "142850",
+    "meter_reading": "142850 HRS",
     "reverse_charge_applicable": false,
     "repair_type": {
       "repair_type_name": "Major Maintenance & Engine Overhaul"
     },
     "customer": {
       "customer_name": "ABC Logistics & Transport Solutions Pvt Ltd",
-      "address": "Plot No. 45, Industrial Estate, Korba, Chhattisgarh - 495677",
+      "address": "Plot No. 45, Industrial Estate, Korba, Chhattisgarh 495677",
       "customer_pan": "ABCDE1234F",
       "gstin": "22ABCDE1234F1Z5"
     },
