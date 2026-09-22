@@ -83,8 +83,8 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
         const desc = String(r.description);
         const parts = desc.split('\n');
         for (const part of parts) {
-          // At 11px font in a ~16% width column, ~20 characters fit per line
-          descLines += Math.max(1, Math.ceil(part.length / 20));
+          // At 11px font in a 19% width column, ~28 characters fit per line
+          descLines += Math.max(1, Math.ceil(part.length / 28));
         }
       } else {
         descLines = 1;
