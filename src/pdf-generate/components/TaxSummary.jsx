@@ -12,8 +12,8 @@ export default function TaxSummary({
   reverseCharge,
 }) {
   return (
-    <div className="mt-0 text-[12px] font-sans relative z-10">
-      <table className="w-[50%] border-collapse border border-black text-[11.5px]">
+    <div className="mt-0 text-[13px] font-sans relative z-10">
+      <table className="w-[55%] border-collapse border border-black text-[13px]">
         <thead>
           <tr>
             <th className="border border-black font-bold p-1 text-center">Tax %</th>
@@ -30,7 +30,7 @@ export default function TaxSummary({
         </thead>
         <tbody>
           <tr>
-            <td className="border border-black text-center p-1">{fmt(overallTaxPct)}</td>
+            <td className="border border-black text-center p-1">{Number(overallTaxPct).toFixed(2)}</td>
             <td className="border border-black text-right p-1">{fmt(taxable)}</td>
             {isInterState ? (
               <td className="border border-black text-right p-1">{fmt(igst)}</td>

@@ -13,9 +13,9 @@ export default function ItemsTable({
     roundedGrand,
 }) {
     const headerClass =
-        "border border-black bg-[#D9D9D9] text-black custom-header text-[11px] font-bold px-[2px] py-1 text-center align-top break-words tracking-tight";
+        "border border-black bg-[#E5E5E5] text-black custom-header text-[11px] font-bold px-[2px] py-[4px] text-center align-middle break-words tracking-tight leading-tight";
     const cellClass =
-        "border border-black px-[2px] py-1 text-[11px] leading-[1.15] align-top break-words tracking-tight";
+        "border border-black px-[2px] py-[4px] text-[11px] leading-[1.2] align-top break-words tracking-tight";
 
     const totalCols = isSpareInvoice
         ? isInterState
@@ -26,56 +26,56 @@ export default function ItemsTable({
             : 10;
 
     const spareIntraWidths = [
-        "4.3%",   // S.NO
-        "16.5%",  // CODE / DESCRIPTION
-        "8%",     // HSN/SAC
-        "4.5%",   // UOM
-        "5%",     // QTY
-        "8%",     // MRP
-        "8.5%",   // PRICE
-        "6%",     // DISC
-        "9.5%",   // TAXABLE
-        "8.5%",   // CGST
-        "8.5%",   // SGST
-        "12.7%",  // AMOUNT
+        "4%",     // S.NO
+        "19%",    // CODE / DESCRIPTION
+        "7.5%",   // HSN/SAC
+        "5%",     // UOM
+        "4.5%",   // QTY
+        "7.5%",   // MRP
+        "7.5%",   // PRICE
+        "5%",     // DISC
+        "9%",     // TAXABLE
+        "9%",     // CGST
+        "9%",     // SGST
+        "13%",    // AMOUNT
     ];
 
     const spareInterWidths = [
-        "4.5%",   // S.NO
-        "17.5%",  // CODE / DESCRIPTION
-        "8%",     // HSN/SAC
-        "4.5%",   // UOM
-        "5%",     // QTY
-        "8%",     // MRP
-        "8.5%",   // PRICE
-        "6.5%",   // DISC
+        "4%",     // S.NO
+        "19%",    // CODE / DESCRIPTION
+        "7.5%",   // HSN/SAC
+        "5%",     // UOM
+        "4.5%",   // QTY
+        "7.5%",   // MRP
+        "7.5%",   // PRICE
+        "5.5%",   // DISC
         "11%",    // TAXABLE
-        "12%",    // IGST
+        "14%",    // IGST
         "14.5%",  // AMOUNT
     ];
 
     const labourIntraWidths = [
         "4.5%",   // S.NO
-        "19.5%",  // CODE / DESCRIPTION
-        "9%",     // HSN/SAC
-        "5.5%",   // QTY
-        "10.5%",  // LABOUR VALUE
-        "7.5%",   // DISC
-        "10%",    // TAXABLE
-        "9.5%",   // CGST
-        "9.5%",   // SGST
-        "14.5%",  // AMOUNT
+        "28.5%",  // SAC / DESCRIPTION
+        "5%",     // UOM
+        "5%",     // QTY
+        "10%",    // RATE
+        "6%",     // DISC
+        "11%",    // TAXABLE
+        "9%",     // CGST
+        "9%",     // SGST
+        "12%",    // AMOUNT
     ];
 
     const labourInterWidths = [
-        "5%",     // S.NO
-        "20.5%",  // CODE / DESCRIPTION
-        "10%",    // HSN/SAC
-        "6%",     // QTY
-        "12%",    // LABOUR VALUE
-        "8.5%",   // DISC
-        "11.5%",  // TAXABLE
-        "12%",    // IGST
+        "4.5%",   // S.NO
+        "28.5%",  // SAC / DESCRIPTION
+        "5%",     // UOM
+        "5%",     // QTY
+        "10%",    // RATE
+        "6.5%",   // DISC
+        "12%",    // TAXABLE
+        "14%",    // IGST
         "14.5%",  // AMOUNT
     ];
 
@@ -88,7 +88,7 @@ export default function ItemsTable({
     }
 
     return (
-        <table className="invoice-items-table w-full border-collapse table-fixed mt-2 text-[12px] font-sans">
+        <table className="invoice-items-table w-full border-collapse table-fixed mt-2 text-[11px] font-sans">
             <colgroup>
                 {columnWidths.map((width, index) => (
                     <col key={index} style={{ width }} />
@@ -141,7 +141,7 @@ export default function ItemsTable({
                         {isInterState ? (
                             <td className={`${cellClass} text-center align-top`}>
                                 <div className="flex flex-col justify-start items-center whitespace-nowrap">
-                                    <span>{r.igstPer}%</span>
+                                    <span>{Number(r.igstPer).toFixed(2)} %</span>
                                     <span>{fmt(r.igstAmt)}</span>
                                 </div>
                             </td>
@@ -149,13 +149,13 @@ export default function ItemsTable({
                             <>
                                 <td className={`${cellClass} text-right align-top`}>
                                     <div className="flex flex-col justify-start items-end whitespace-nowrap">
-                                        <span>{r.cgstPer}%</span>
+                                        <span>{Number(r.cgstPer).toFixed(2)} %</span>
                                         <span>{fmt(r.cg)}</span>
                                     </div>
                                 </td>
                                 <td className={`${cellClass} text-right align-top`}>
                                     <div className="flex flex-col justify-start items-end whitespace-nowrap">
-                                        <span>{r.sgstPer}%</span>
+                                        <span>{Number(r.sgstPer).toFixed(2)} %</span>
                                         <span>{fmt(r.sg)}</span>
                                     </div>
                                 </td>
