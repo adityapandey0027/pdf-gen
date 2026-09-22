@@ -60,14 +60,24 @@ export default function Header({ invoice, pageNumber, totalPages, isSpareInvoice
                               return lines;
                             };
 
-                            const nameLines = formatText(invoice.customer?.customer_name, 35);
-                            const addressLines = formatText(invoice.customer?.address, 35);
+                            const nameLines = formatText(invoice.customer?.customer_name, 28);
+                            const addressLines = formatText(invoice.customer?.address, 28);
 
                             return (
                               <>
-                                {nameLines.map((line, i) => (
-                                  <div key={`name-${i}`}>{line}</div>
-                                ))}
+                                {nameLines.map((line, i) => {
+                                  const isLastLine = i === nameLines.length - 1;
+                                  return (
+                                    <div key={`name-${i}`}>
+                                      {line}
+                                      {isLastLine && invoice.customer?.customer_code && (
+                                        <span className="font-bold ml-6">
+                                          [{invoice.customer.customer_code}]
+                                        </span>
+                                      )}
+                                    </div>
+                                  );
+                                })}
                                 {addressLines.map((line, i) => (
                                   <div key={`addr-${i}`}>{line}</div>
                                 ))}
