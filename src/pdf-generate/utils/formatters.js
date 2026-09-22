@@ -86,7 +86,7 @@ export function fmtDateTime(value) {
   const ampm = h >= 12 ? "PM" : "AM";
   h = h % 12 || 12;
   const mm = String(d.getMinutes()).padStart(2, "0");
-  return `${datePart} ${String(h).padStart(2, "0")}:${mm} ${ampm}`;
+  return `${datePart} ${h}:${mm} ${ampm}`;
 }
 
 export function buildComputedItems(invoice) {

@@ -192,7 +192,7 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
 
   const { isInterState, taxable, cgst, sgst, igst, roundedGrand, roundOff } = computedData;
   const isSpareInvoice = invoice.invoice_type === "SPARE";
-  const overallTaxPct = Number(invoice.items?.[0]?.cgst_per || 0) + Number(invoice.items?.[0]?.sgst_per || 0) + Number(invoice.items?.[0]?.igst_per || 0);
+  const overallTaxPct = isInterState ? Number(invoice.items?.[0]?.igst_per || 0) : Number(invoice.items?.[0]?.cgst_per || 0);
 
   return (
     <div className="bg-gray-100 py-8 print:bg-white print:py-0">

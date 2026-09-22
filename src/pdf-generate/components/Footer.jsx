@@ -5,10 +5,10 @@ export default function Footer({ isLastPage }) {
   if (!isLastPage) return null;
 
   return (
-    <div className="mt-4 text-[11px] leading-[1.7] font-sans">
+    <div className="mt-4 text-[12px] leading-[1.7] font-sans">
       {/* Terms & Conditions */}
       <div>
-        <div className="font-bold text-[15px] uppercase">
+        <div className="font-bold text-[13px] uppercase">
           TERMS AND CONDITIONS :
         </div>
 
@@ -26,7 +26,7 @@ export default function Footer({ isLastPage }) {
       </div>
 
       {/* Signature section */}
-      <div className="mt-7 flex text-[14px] justify-center gap-45 text-center">
+      <div className="mt-7 flex text-[13px] justify-center gap-45 text-center">
         {/* Customer */}
         <div className="flex flex-col justify-end">
           <div className="font-bold">

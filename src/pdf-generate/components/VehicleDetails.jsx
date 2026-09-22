@@ -3,13 +3,13 @@ import { fmtDate } from "../utils/formatters";
 
 export default function VehicleDetails({ invoice }) {
 const sectionHeaderClass =
-  "border border-black font-bold text-center px-1 h-4 text-black align-bottom leading-none";
+  "border border-black font-bold text-center px-[4px] py-[2px] text-black align-middle leading-tight bg-white";
 
 const cellClass =
-  "border border-black px-1 h-4 text-[12px] leading-none align-bottom";
+  "border border-black px-[4px] py-[2px] text-[13px] leading-tight align-top";
 
   return (
-    <table className="w-full border-collapse mt-2 mb-0 text-[12px] font-sans">
+    <table className="w-full border-collapse mt-1 mb-0 text-[13px] font-sans">
       <tbody>
         <tr>
           <th colSpan={2} className={sectionHeaderClass}>
@@ -88,7 +88,7 @@ const cellClass =
             {invoice.vehicle?.engine_no}
           </td>
 
-          <td colSpan={2} className="border-none py-0 px-1 align-bottom"></td>
+          <td colSpan={2} className="border-b border-r border-black py-0 px-[4px] align-top"></td>
         </tr>
       </tbody>
     </table>
