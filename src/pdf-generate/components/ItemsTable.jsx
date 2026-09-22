@@ -29,7 +29,7 @@ export default function ItemsTable({
         "4%",     // S.NO
         "19%",    // CODE / DESCRIPTION
         "7.5%",   // HSN/SAC
-        "4%",     // UOM
+        "5%",     // UOM
         "4.5%",   // QTY
         "7.5%",   // MRP
         "7.5%",   // PRICE
@@ -37,45 +37,45 @@ export default function ItemsTable({
         "9%",     // TAXABLE
         "9%",     // CGST
         "9%",     // SGST
-        "14%",    // AMOUNT
+        "13%",    // AMOUNT
     ];
 
     const spareInterWidths = [
         "4%",     // S.NO
         "19%",    // CODE / DESCRIPTION
         "7.5%",   // HSN/SAC
-        "4%",     // UOM
+        "5%",     // UOM
         "4.5%",   // QTY
         "7.5%",   // MRP
         "7.5%",   // PRICE
         "5.5%",   // DISC
         "11%",    // TAXABLE
         "14%",    // IGST
-        "15.5%",  // AMOUNT
+        "14.5%",  // AMOUNT
     ];
 
     const labourIntraWidths = [
         "4.5%",   // S.NO
-        "19.5%",  // CODE / DESCRIPTION
-        "9%",     // HSN/SAC
-        "5.5%",   // QTY
-        "10.5%",  // LABOUR VALUE
-        "7.5%",   // DISC
-        "10%",    // TAXABLE
-        "9.5%",   // CGST
-        "9.5%",   // SGST
-        "14.5%",  // AMOUNT
+        "28.5%",  // SAC / DESCRIPTION
+        "5%",     // UOM
+        "5%",     // QTY
+        "10%",    // RATE
+        "6%",     // DISC
+        "11%",    // TAXABLE
+        "9%",     // CGST
+        "9%",     // SGST
+        "12%",    // AMOUNT
     ];
 
     const labourInterWidths = [
-        "5%",     // S.NO
-        "20.5%",  // CODE / DESCRIPTION
-        "10%",    // HSN/SAC
-        "6%",     // QTY
-        "12%",    // LABOUR VALUE
-        "8.5%",   // DISC
-        "11.5%",  // TAXABLE
-        "12%",    // IGST
+        "4.5%",   // S.NO
+        "28.5%",  // SAC / DESCRIPTION
+        "5%",     // UOM
+        "5%",     // QTY
+        "10%",    // RATE
+        "6.5%",   // DISC
+        "12%",    // TAXABLE
+        "14%",    // IGST
         "14.5%",  // AMOUNT
     ];
 
