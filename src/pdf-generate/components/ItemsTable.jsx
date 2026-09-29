@@ -27,8 +27,8 @@ export default function ItemsTable({
 
     const spareIntraWidths = [
         "4%",     // S.NO
-        "19%",    // CODE / DESCRIPTION
-        "7.5%",   // HSN/SAC
+        "18%",    // CODE / DESCRIPTION
+        "8.5%",   // HSN/SAC
         "5%",     // UOM
         "4.5%",   // QTY
         "7.5%",   // MRP
@@ -42,8 +42,8 @@ export default function ItemsTable({
 
     const spareInterWidths = [
         "4%",     // S.NO
-        "19%",    // CODE / DESCRIPTION
-        "7.5%",   // HSN/SAC
+        "18%",    // CODE / DESCRIPTION
+        "8.5%",   // HSN/SAC
         "5%",     // UOM
         "4.5%",   // QTY
         "7.5%",   // MRP
@@ -56,8 +56,8 @@ export default function ItemsTable({
 
     const labourIntraWidths = [
         "4.5%",   // S.NO
-        "28.5%",  // SAC / DESCRIPTION
-        "5%",     // UOM
+        "26%",  // SAC / DESCRIPTION
+        "6.5%",     // UOM
         "5%",     // QTY
         "10%",    // RATE
         "6%",     // DISC
@@ -69,14 +69,14 @@ export default function ItemsTable({
 
     const labourInterWidths = [
         "4.5%",   // S.NO
-        "28.5%",  // SAC / DESCRIPTION
+        "27.5%",  // SAC / DESCRIPTION
         "5%",     // UOM
         "5%",     // QTY
         "10%",    // RATE
         "6.5%",   // DISC
         "12%",    // TAXABLE
         "14%",    // IGST
-        "14.5%",  // AMOUNT
+        "15.5%",  // AMOUNT
     ];
 
     let columnWidths;

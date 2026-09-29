@@ -32,7 +32,7 @@ export default function Header({ invoice, pageNumber, totalPages, isSpareInvoice
         <div className="w-[49%]">
           <table className="w-full border-none text-[13px]">
             <tbody>
-              <InfoRow label="INVOICE NO" value={invoice.id} />
+              <InfoRow label="INVOICE NO" value={invoice.invoice_no} />
               <InfoRow label="JOB CARD NO" value={invoice.jobcard_no} />
               <InfoRow label="ORDER NO" value={invoice.order_no} />
               <InfoRow label="SAP REF NO" value={invoice.sap_ref_no} />
