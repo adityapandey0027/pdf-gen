@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
   --font-serif: "Merriweather", Georgia, serif;
 }
 
@@ -15,8 +15,9 @@ body {
 body {
   font-family: var(--font-sans);
   color: #000000;
-  /* font-weight: 450; */
   background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   -webkit-print-color-adjust: exact !important;
   print-color-adjust: exact !important;
@@ -70,9 +71,9 @@ body {
   .print-page-container {
     position: relative !important;
 
-    width: 200mm !important;
-    max-width: 200mm !important;
-    min-width: 200mm !important;
+    width: 190mm !important;
+    max-width: 190mm !important;
+    min-width: 190mm !important;
 
     height: 270mm !important;
     max-height: 270mm !important;

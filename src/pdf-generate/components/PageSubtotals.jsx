@@ -30,41 +30,41 @@ export default function PageSubtotals({
 
   return (
     <tfoot>
-      <tr className="font-bold border-b border-black text-[11px] tracking-tight">
-        <td className="border-t border-b border-l border-r-0 border-black px-[2px] py-[4px] break-words"></td>
-        <td className="border-t border-b border-l-0 border-r-0 border-black text-center px-[2px] py-[4px] break-words">
+      <tr className="font-bold border-b border-black text-[9pt]">
+        <td className="border-t border-b border-l border-r-0 border-black px-[2px] py-[2px] break-words"></td>
+        <td className="border-t border-b border-l-0 border-r-0 border-black text-center px-[2px] py-[2px] break-words font-bold">
           Subtotal
         </td>
         <td
           colSpan={preDiscColSpan - 2}
-          className="border-t border-b border-l-0 border-r-0 border-black px-[2px] py-[4px] break-words"
+          className="border-t border-b border-l-0 border-r-0 border-black px-[2px] py-[2px] break-words"
         ></td>
-        <td className="border border-black text-right px-[2px] py-[4px] break-words">
+        <td className="border border-black text-right px-[2px] py-[2px] break-words font-bold">
           {fmt(pageSubtotal.discAmt)}
         </td>
-        <td className="border border-black text-right px-[2px] py-[4px] break-words">
+        <td className="border border-black text-right px-[2px] py-[2px] break-words font-bold">
           {fmt(pageSubtotal.taxable)}
         </td>
         {isInterState ? (
-          <td className="border border-black text-right px-[2px] py-[4px] break-words">
+          <td className="border border-black text-right px-[2px] py-[2px] break-words font-bold">
             {fmt(pageSubtotal.igst)}
           </td>
         ) : (
           <>
-            <td className="border border-black text-right px-[2px] py-[4px] break-words">
+            <td className="border border-black text-right px-[2px] py-[2px] break-words font-bold">
               {fmt(pageSubtotal.cgst)}
             </td>
-            <td className="border border-black text-right px-[2px] py-[4px] break-words">
+            <td className="border border-black text-right px-[2px] py-[2px] break-words font-bold">
               {fmt(pageSubtotal.sgst)}
             </td>
           </>
         )}
-        <td className="border border-black text-right px-[2px] py-[4px] break-words">
+        <td className="border border-black text-right px-[2px] py-[2px] break-words font-bold">
           {fmt(pageSubtotal.grand)}
         </td>
       </tr>
 
-      <tr className="font-bold bg-gray-50 hidden text-[11px] tracking-tight">
+      <tr className="font-bold bg-gray-50 hidden text-[9pt]">
         <td
           colSpan={preDiscColSpan}
           className="border border-black text-center px-[2px] py-1 break-words"
@@ -97,30 +97,30 @@ export default function PageSubtotals({
       </tr>
 
       {isLastPage && roundOff !== 0 && (
-        <tr className="font-bold text-[11px] tracking-tight">
+        <tr className="text-[9pt]">
           <td colSpan={preDiscColSpan} className="border-none"></td>
           <td
             colSpan={fullColSpan - preDiscColSpan - 1}
-            className="border-t border-b border-l border-r-0 border-black text-right px-[2px] py-[4px] break-words pr-4"
+            className="border-t border-b border-l border-r-0 border-black text-right px-[2px] py-[2px] break-words pr-4 font-normal"
           >
             ROUNDOFF (INR)
           </td>
-          <td className="border border-black text-right px-[2px] py-[4px] break-words whitespace-nowrap">
+          <td className="border border-black text-right px-[2px] py-[2px] break-words whitespace-nowrap font-bold">
             {fmt(roundOff)}
           </td>
         </tr>
       )}
 
       {isLastPage && (
-        <tr className="font-bold text-[11px] tracking-tight">
+        <tr className="text-[9pt]">
           <td colSpan={preDiscColSpan} className="border-none"></td>
           <td
             colSpan={fullColSpan - preDiscColSpan - 1}
-            className="border-t border-b border-l border-r-0 border-black text-right px-[2px] py-[4px] break-words pr-4 uppercase"
+            className="border-t border-b border-l border-r-0 border-black text-right px-[2px] py-[2px] break-words pr-4 uppercase font-normal"
           >
             GRAND TOTAL (INR)
           </td>
-          <td className="border border-black text-right px-[2px] py-[4px] break-words whitespace-nowrap">
+          <td className="border border-black text-right px-[2px] py-[2px] break-words whitespace-nowrap font-bold">
             {fmt(roundedGrand)}
           </td>
         </tr>

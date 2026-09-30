@@ -3,15 +3,16 @@ import { fmtDate } from "../utils/formatters";
 
 export default function VehicleDetails({ invoice }) {
 const sectionHeaderClass =
-  "border border-black font-bold text-center px-[4px] py-[2px] text-black align-middle leading-tight bg-white";
+  "border border-black font-bold text-center px-[4px] py-[2px] text-black align-middle leading-tight bg-white text-[9pt]";
 
 const cellClass =
-  "border border-black px-[4px] py-[2px] text-[13px] leading-tight align-top";
+  "border border-black px-[4px] py-[2px] text-[9pt] font-normal leading-tight align-top";
 
-const labelClass = `${cellClass} font-bold whitespace-nowrap`;
+const labelClass =
+  "border border-black px-[4px] py-[2px] text-[9pt] font-bold leading-tight align-top whitespace-nowrap";
 
   return (
-    <table className="w-full border-collapse mt-1 mb-0 text-[13px] font-sans">
+    <table className="w-full border-collapse mt-1 mb-0 text-[9pt] font-sans">
       <tbody>
         <tr>
           <th colSpan={2} className={sectionHeaderClass}>
@@ -60,7 +61,7 @@ const labelClass = `${cellClass} font-bold whitespace-nowrap`;
             {invoice.vehicle?.chassis_no}
           </td>
           <td className={labelClass}>
-            KM/HM READING
+            KM / HM READING
           </td>
           <td className={cellClass}>
             {invoice.meter_reading}
@@ -75,7 +76,7 @@ const labelClass = `${cellClass} font-bold whitespace-nowrap`;
             {invoice.vehicle?.aggregate_no}
           </td>
           <td className={labelClass}>
-            Cum. KM/HM READING
+            Cum. KM / HM READING
           </td>
           <td className={cellClass}>
             {invoice.meter_reading}
