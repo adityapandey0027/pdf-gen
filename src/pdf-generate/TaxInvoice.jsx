@@ -9,6 +9,7 @@ import PageMetaFooter from "./components/PageMetaFooter";
 import { buildComputedItems } from "./utils/formatters";
 
 const PRINT_PAGE_HEIGHT_PX = 920;
+let measureCanvas = null;
 
 export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
   const [invoice, setInvoice] = useState(null);
@@ -77,22 +78,72 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
     const { rows } = computedData;
     const pages = [];
 
+    const isSpare = computedData?.isSpare ?? true;
+    // In 8pt font:
+    // Spare bill description column is 21.1% (~146px / ~24 chars).
+    // Labour bill description column is 26.0% (~188px / ~31 chars).
+    const charLimit = isSpare ? 24 : 31;
+    const maxPixelWidth = isSpare ? 146 : 188;
+
     const estimateLines = (r) => {
-      let descLines = 0;
-      if (r.description) {
-        const desc = String(r.description);
-        const parts = desc.split('\n');
-        for (const part of parts) {
-          // At 11px font in a 19% width column, ~28 characters fit per line
-          descLines += Math.max(1, Math.ceil(part.length / 28));
+      let ctx = null;
+      if (typeof document !== "undefined") {
+        if (!measureCanvas) {
+          measureCanvas = document.createElement("canvas");
         }
-      } else {
-        descLines = 1;
+        ctx = measureCanvas.getContext("2d");
+        if (ctx) {
+          ctx.font = '8pt Arial, "Helvetica Neue", Helvetica, sans-serif';
+        }
       }
-      // 1 line for the code + the description lines
-      const totalItemLines = 1 + descLines;
-      
-      // The CGST/SGST/IGST columns render as 2 lines (e.g., '9%' \n '216.00')
+
+      const countWrapped = (text) => {
+        if (!text) return 0;
+        const paragraphs = String(text).split("\n");
+        let lines = 0;
+        for (const p of paragraphs) {
+          const trimmed = p.trim();
+          if (!trimmed) {
+            lines += 1;
+            continue;
+          }
+          const rawWords = trimmed.split(/\s+/);
+          const words = [];
+          for (const rw of rawWords) {
+            const isTooLong = ctx ? ctx.measureText(rw).width > maxPixelWidth : rw.length > charLimit;
+            if (isTooLong) {
+              const chunk = charLimit;
+              for (let k = 0; k < rw.length; k += chunk) {
+                words.push(rw.substring(k, k + chunk));
+              }
+            } else {
+              words.push(rw);
+            }
+          }
+
+          let curLine = "";
+          for (const w of words) {
+            const test = curLine ? `${curLine} ${w}` : w;
+            const fits = ctx
+              ? ctx.measureText(test).width <= maxPixelWidth
+              : test.length <= charLimit;
+            if (fits) {
+              curLine = test;
+            } else {
+              if (curLine) lines += 1;
+              curLine = w;
+            }
+          }
+          if (curLine) lines += 1;
+        }
+        return Math.max(1, lines);
+      };
+
+      const codeLines = countWrapped(r.code);
+      const descLines = countWrapped(r.description);
+      const totalItemLines = codeLines + descLines;
+
+      // The CGST and SGST columns render 2 lines ('9.00 %' \n amount), so each row takes at least 2 lines
       return Math.max(2, totalItemLines);
     };
 
@@ -105,8 +156,9 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
       let currentCapacity = 0;
 
       if (pageNum === 1) {
-        const prefLines = 20;
-        const maxLines = 23;
+        // Front page constraint: strictly at most 20 text lines in the table.
+        // Less than 20 (like 17, 18, 19) happens only when the next item cannot fully fit under 20 lines.
+        const maxLines = 20;
         let linesCount = 0;
         for (let i = currentIdx; i < rows.length; i++) {
           const itemLines = estimateLines(rows[i]);
@@ -115,13 +167,19 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
           }
           linesCount += itemLines;
           currentCapacity++;
-          if (linesCount >= prefLines) {
-            break;
-          }
+        }
+
+        // If there are more items that didn't fit on page 1, ensure at least 1 item moves to next page
+        let remainingLines = 0;
+        for (let i = currentIdx; i < rows.length; i++) {
+          remainingLines += estimateLines(rows[i]);
+        }
+        if (currentCapacity === remainingRows && remainingLines > 12 && remainingRows > 1) {
+          currentCapacity = Math.max(1, remainingRows - 1);
         }
       } else {
-        const prefLines = 26;
-        const maxLines = 28;
+        // Rest of the pages constraint: strictly at most 30 text lines.
+        const maxLines = 30;
         const lastPageMaxLines = 16; 
         
         let remainingLines = 0;
@@ -129,6 +187,7 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
           remainingLines += estimateLines(rows[i]);
         }
         
+        // If all remaining rows can fit on this last page along with Tax Summary & Footer
         if (remainingLines <= lastPageMaxLines) {
           currentCapacity = remainingRows;
         } else {
@@ -140,13 +199,10 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
             }
             linesCount += itemLines;
             currentCapacity++;
-            if (linesCount >= prefLines) {
-              break;
-            }
           }
           
-          if (currentCapacity === remainingRows) {
-             currentCapacity = Math.max(1, remainingRows - 1);
+          if (currentCapacity === remainingRows && remainingLines > lastPageMaxLines) {
+            currentCapacity = Math.max(1, remainingRows - 1);
           }
         }
       }

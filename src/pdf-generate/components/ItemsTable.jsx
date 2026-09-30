@@ -126,17 +126,17 @@ export default function ItemsTable({
                         <td className={`${cellClass} text-left`}>{r.sno}</td>
                         <td className={`${cellClass} invoice-description-cell text-left`}>
                             <div className="invoice-description">
-                                <div>{r.code}</div>
-                                <div>{r.description}</div>
+                                <div className="whitespace-nowrap overflow-hidden text-ellipsis">{r.code}</div>
+                                <div className="break-words whitespace-pre-line leading-[1.3]">{r.description}</div>
                             </div>
                         </td>
-                        <td className={`${cellClass} text-left text-[9pt]`}>{r.hsn}</td>
-                        {isSpareInvoice && <td className={`${cellClass} text-left`}>{r.uom}</td>}
-                        <td className={`${cellClass} text-right`}>{fmt(r.qty, 3)}</td>
-                        {isSpareInvoice && <td className={`${cellClass} text-right`}>{fmt(r.mrp)}</td>}
-                        <td className={`${cellClass} text-right`}>{fmt(r.rate)}</td>
-                        <td className={`${cellClass} text-right`}>{fmt(r.discAmt)}</td>
-                        <td className={`${cellClass} text-right`}>{fmt(r.taxableAmt)}</td>
+                        <td className={`${cellClass} text-left text-[9pt] whitespace-nowrap`}>{r.hsn}</td>
+                        {isSpareInvoice && <td className={`${cellClass} text-left whitespace-nowrap`}>{r.uom}</td>}
+                        <td className={`${cellClass} text-right whitespace-nowrap`}>{fmt(r.qty, 3)}</td>
+                        {isSpareInvoice && <td className={`${cellClass} text-right whitespace-nowrap`}>{fmt(r.mrp)}</td>}
+                        <td className={`${cellClass} text-right whitespace-nowrap`}>{fmt(r.rate)}</td>
+                        <td className={`${cellClass} text-right whitespace-nowrap`}>{fmt(r.discAmt)}</td>
+                        <td className={`${cellClass} text-right whitespace-nowrap`}>{fmt(r.taxableAmt)}</td>
 
                         {isInterState ? (
                             <td className={`${cellClass} text-right align-top text-[9pt]`}>
@@ -162,7 +162,7 @@ export default function ItemsTable({
                             </>
                         )}
 
-                        <td className={`${cellClass} text-right`}>{fmt(r.lineTotal)}</td>
+                        <td className={`${cellClass} text-right whitespace-nowrap`}>{fmt(r.lineTotal)}</td>
                     </tr>
                 ))}
             </tbody>
