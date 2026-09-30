@@ -5,7 +5,7 @@ export default function Footer({ isLastPage }) {
   if (!isLastPage) return null;
 
   return (
-    <div className="mt-3 text-[9pt] font-sans">
+    <div className="mt-1.5 text-[9pt] font-sans">
       {/* Terms & Conditions */}
       <div>
         <div className="font-bold text-[9pt] uppercase">
@@ -22,7 +22,7 @@ export default function Footer({ isLastPage }) {
       </div>
 
       {/* Signature section */}
-      <div className="mt-6 flex text-[9pt] justify-center gap-44 text-center">
+      <div className="mt-2 flex text-[9pt] justify-center gap-44 text-center">
         {/* Customer */}
         <div className="flex flex-col justify-end">
           <div className="font-bold">
@@ -38,7 +38,7 @@ export default function Footer({ isLastPage }) {
           <div className="font-bold">
             For : {COMPANY.name}
           </div>
-          <div className="mt-7 font-bold">
+          <div className="mt-3 font-bold">
             __________________________________
           </div>
           <div className="font-bold italic mt-[1px]">

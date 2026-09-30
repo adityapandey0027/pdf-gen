@@ -10,7 +10,7 @@ export default function App() {
   const invoiceId = params.get("id") || "1";
 
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gray-200 print:bg-white print:min-h-0 print:h-auto">
       <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-300 bg-white px-6 py-3 shadow-sm print:hidden">
         <div>
           <h1 className="text-lg font-bold text-gray-800">
@@ -24,13 +24,13 @@ export default function App() {
 
         <button
           onClick={handlePrint}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white"
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white cursor-pointer hover:bg-blue-700"
         >
           Print / Save PDF
         </button>
       </div>
 
-      <main className="py-6 print:p-0">
+      <main className="py-6 print:p-0 print:m-0 print:bg-white print:h-auto">
         <TaxInvoice
           apiUrl={`/invoices/pdf-json/${invoiceId}`}
         />

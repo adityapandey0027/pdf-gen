@@ -44,11 +44,11 @@ export default function TaxSummary({
         </tbody>
       </table>
 
-      <div className="mt-2 uppercase text-[9pt]">
+      <div className="mt-1 uppercase text-[9pt]">
         <span className="font-bold">AMOUNT IN WORDS : </span>
         <span className="font-normal">{amountToWordsINR(roundedGrand)} RUPEES ONLY</span>
       </div>
-      <div className="font-bold text-[9pt] mt-1">
+      <div className="font-bold text-[9pt] mt-0.5">
         Reverse Charges Applicable: {reverseCharge ? "Yes" : "No"}
       </div>
     </div>

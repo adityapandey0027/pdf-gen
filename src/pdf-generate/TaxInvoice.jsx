@@ -147,6 +147,11 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
       return Math.max(2, totalItemLines);
     };
 
+    // If the entire invoice is short (<= 17 lines total, e.g. 1-5 items),
+    // it fits completely on 1 page along with Vehicle Details, Tax Summary, and Signatures!
+    const SINGLE_PAGE_MAX_LINES = 17;
+    const totalLinesAllRows = rows.reduce((acc, r) => acc + estimateLines(r), 0);
+
     let runningTaxable = 0, runningCgst = 0, runningSgst = 0, runningIgst = 0, runningGrand = 0;
     let currentIdx = 0;
     let pageNum = 1;
@@ -156,31 +161,31 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
       let currentCapacity = 0;
 
       if (pageNum === 1) {
-        // Front page constraint: strictly at most 20 text lines in the table.
-        // Less than 20 (like 17, 18, 19) happens only when the next item cannot fully fit under 20 lines.
-        const maxLines = 20;
-        let linesCount = 0;
-        for (let i = currentIdx; i < rows.length; i++) {
-          const itemLines = estimateLines(rows[i]);
-          if (linesCount + itemLines > maxLines && currentCapacity > 0) {
-            break;
+        if (totalLinesAllRows <= SINGLE_PAGE_MAX_LINES) {
+          currentCapacity = remainingRows;
+        } else {
+          // Multi-page invoice:
+          // Front page constraint: strictly up to 20 text lines in the table.
+          // Less than 20 (like 17, 18, 19) happens only when the next item cannot fully fit under 20 lines.
+          const maxLines = 20;
+          let linesCount = 0;
+          for (let i = currentIdx; i < rows.length; i++) {
+            const itemLines = estimateLines(rows[i]);
+            if (linesCount + itemLines > maxLines && currentCapacity > 0) {
+              break;
+            }
+            linesCount += itemLines;
+            currentCapacity++;
           }
-          linesCount += itemLines;
-          currentCapacity++;
-        }
-
-        // If there are more items that didn't fit on page 1, ensure at least 1 item moves to next page
-        let remainingLines = 0;
-        for (let i = currentIdx; i < rows.length; i++) {
-          remainingLines += estimateLines(rows[i]);
-        }
-        if (currentCapacity === remainingRows && remainingLines > 12 && remainingRows > 1) {
-          currentCapacity = Math.max(1, remainingRows - 1);
+          // Ensure at least 1 item is pushed to page 2 so the final page carries items + Tax Summary + Signatures
+          if (currentCapacity === remainingRows && remainingRows > 1) {
+            currentCapacity = remainingRows - 1;
+          }
         }
       } else {
         // Rest of the pages constraint: strictly at most 30 text lines.
         const maxLines = 30;
-        const lastPageMaxLines = 16; 
+        const lastPageMaxLines = 18; 
         
         let remainingLines = 0;
         for (let i = currentIdx; i < rows.length; i++) {
@@ -201,8 +206,8 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
             currentCapacity++;
           }
           
-          if (currentCapacity === remainingRows && remainingLines > lastPageMaxLines) {
-            currentCapacity = Math.max(1, remainingRows - 1);
+          if (currentCapacity === remainingRows && remainingLines > lastPageMaxLines && remainingRows > 1) {
+            currentCapacity = remainingRows - 1;
           }
         }
       }
@@ -251,8 +256,8 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
   const overallTaxPct = isInterState ? Number(invoice.items?.[0]?.igst_per || 0) : Number(invoice.items?.[0]?.cgst_per || 0);
 
   return (
-    <div className="bg-gray-100 py-8 print:bg-white print:py-0">
-      <div ref={measureRef} className="absolute top-[-9999px] left-[-9999px] w-[900px] pointer-events-none opacity-0">
+    <div className="bg-gray-100 py-8 print:bg-white print:py-0 print:m-0 print:h-auto">
+      <div ref={measureRef} className="absolute top-[-9999px] left-[-9999px] w-[900px] pointer-events-none opacity-0 print:hidden">
         <div className="measure-header"><Header invoice={invoice} pageNumber={1} totalPages={1} /></div>
         <div className="measure-vehicle"><VehicleDetails invoice={invoice} /></div>
         <table className="w-full">
@@ -281,9 +286,9 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
         return (
           <div
             key={page.pageNumber}
-            className="print-page-container relative mx-auto max-w-[900px] bg-white p-8 text-[9pt] leading-normal text-black shadow print:shadow-none print:p-0 font-sans mb-8 print:mb-0 print:break-after-page flex flex-col justify-between min-h-[1050px] print:min-h-0 pb-10"
+            className="print-page-container relative mx-auto max-w-[900px] w-full bg-white p-8 text-[9pt] leading-normal text-black shadow print:shadow-none print:p-0 font-sans mb-8 print:mb-0 print:break-after-page flex flex-col justify-between min-h-[1050px] print:min-h-[250mm] print:h-[250mm] print:max-h-[250mm] print:break-inside-avoid print:bg-white pb-8 print:pb-0 overflow-x-hidden"
           >
-            <div className="pb-8">
+            <div className="flex-1 flex flex-col print:pb-0">
               <Header invoice={invoice} pageNumber={page.pageNumber} totalPages={page.totalPages} isSpareInvoice={isSpareInvoice} />
               {isFirstPage && <VehicleDetails invoice={invoice} />}
               <ItemsTable

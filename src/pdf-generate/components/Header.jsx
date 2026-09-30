@@ -40,9 +40,9 @@ export default function Header({ invoice, pageNumber, totalPages, isSpareInvoice
         </div>
       </div>
       
-      <div className="text-center my-3">
+      <div className="text-center my-1">
         <div className="text-[14pt] font-bold tracking-normal leading-tight">TAX INVOICE</div>
-        <div className="text-[9pt] font-normal leading-tight mt-1">CREDIT BILL</div>
+        <div className="text-[9pt] font-normal leading-tight mt-0.5">CREDIT BILL</div>
       </div>
 
       <div className="flex justify-between text-[9pt]">
