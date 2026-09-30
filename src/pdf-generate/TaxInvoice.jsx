@@ -9,6 +9,7 @@ import PageMetaFooter from "./components/PageMetaFooter";
 import { buildComputedItems } from "./utils/formatters";
 
 const PRINT_PAGE_HEIGHT_PX = 920;
+let measureCanvas = null;
 
 export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
   const [invoice, setInvoice] = useState(null);
@@ -77,24 +78,79 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
     const { rows } = computedData;
     const pages = [];
 
+    const isSpare = computedData?.isSpare ?? true;
+    // In 8pt font:
+    // Spare bill description column is 21.1% (~146px / ~24 chars).
+    // Labour bill description column is 26.0% (~188px / ~31 chars).
+    const charLimit = isSpare ? 24 : 31;
+    const maxPixelWidth = isSpare ? 146 : 188;
+
     const estimateLines = (r) => {
-      let descLines = 0;
-      if (r.description) {
-        const desc = String(r.description);
-        const parts = desc.split('\n');
-        for (const part of parts) {
-          // At 11px font in a 19% width column, ~28 characters fit per line
-          descLines += Math.max(1, Math.ceil(part.length / 28));
+      let ctx = null;
+      if (typeof document !== "undefined") {
+        if (!measureCanvas) {
+          measureCanvas = document.createElement("canvas");
         }
-      } else {
-        descLines = 1;
+        ctx = measureCanvas.getContext("2d");
+        if (ctx) {
+          ctx.font = '8pt Arial, "Helvetica Neue", Helvetica, sans-serif';
+        }
       }
-      // 1 line for the code + the description lines
-      const totalItemLines = 1 + descLines;
-      
-      // The CGST/SGST/IGST columns render as 2 lines (e.g., '9%' \n '216.00')
+
+      const countWrapped = (text) => {
+        if (!text) return 0;
+        const paragraphs = String(text).split("\n");
+        let lines = 0;
+        for (const p of paragraphs) {
+          const trimmed = p.trim();
+          if (!trimmed) {
+            lines += 1;
+            continue;
+          }
+          const rawWords = trimmed.split(/\s+/);
+          const words = [];
+          for (const rw of rawWords) {
+            const isTooLong = ctx ? ctx.measureText(rw).width > maxPixelWidth : rw.length > charLimit;
+            if (isTooLong) {
+              const chunk = charLimit;
+              for (let k = 0; k < rw.length; k += chunk) {
+                words.push(rw.substring(k, k + chunk));
+              }
+            } else {
+              words.push(rw);
+            }
+          }
+
+          let curLine = "";
+          for (const w of words) {
+            const test = curLine ? `${curLine} ${w}` : w;
+            const fits = ctx
+              ? ctx.measureText(test).width <= maxPixelWidth
+              : test.length <= charLimit;
+            if (fits) {
+              curLine = test;
+            } else {
+              if (curLine) lines += 1;
+              curLine = w;
+            }
+          }
+          if (curLine) lines += 1;
+        }
+        return Math.max(1, lines);
+      };
+
+      const codeLines = countWrapped(r.code);
+      const descLines = countWrapped(r.description);
+      const totalItemLines = codeLines + descLines;
+
+      // The CGST and SGST columns render 2 lines ('9.00 %' \n amount), so each row takes at least 2 lines
       return Math.max(2, totalItemLines);
     };
+
+    // If the entire invoice is short (<= 17 lines total, e.g. 1-5 items),
+    // it fits completely on 1 page along with Vehicle Details, Tax Summary, and Signatures!
+    const SINGLE_PAGE_MAX_LINES = 17;
+    const totalLinesAllRows = rows.reduce((acc, r) => acc + estimateLines(r), 0);
 
     let runningTaxable = 0, runningCgst = 0, runningSgst = 0, runningIgst = 0, runningGrand = 0;
     let currentIdx = 0;
@@ -105,30 +161,38 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
       let currentCapacity = 0;
 
       if (pageNum === 1) {
-        const prefLines = 20;
-        const maxLines = 23;
-        let linesCount = 0;
-        for (let i = currentIdx; i < rows.length; i++) {
-          const itemLines = estimateLines(rows[i]);
-          if (linesCount + itemLines > maxLines && currentCapacity > 0) {
-            break;
+        if (totalLinesAllRows <= SINGLE_PAGE_MAX_LINES) {
+          currentCapacity = remainingRows;
+        } else {
+          // Multi-page invoice:
+          // Front page constraint: strictly up to 20 text lines in the table.
+          // Less than 20 (like 17, 18, 19) happens only when the next item cannot fully fit under 20 lines.
+          const maxLines = 20;
+          let linesCount = 0;
+          for (let i = currentIdx; i < rows.length; i++) {
+            const itemLines = estimateLines(rows[i]);
+            if (linesCount + itemLines > maxLines && currentCapacity > 0) {
+              break;
+            }
+            linesCount += itemLines;
+            currentCapacity++;
           }
-          linesCount += itemLines;
-          currentCapacity++;
-          if (linesCount >= prefLines) {
-            break;
+          // Ensure at least 1 item is pushed to page 2 so the final page carries items + Tax Summary + Signatures
+          if (currentCapacity === remainingRows && remainingRows > 1) {
+            currentCapacity = remainingRows - 1;
           }
         }
       } else {
-        const prefLines = 26;
-        const maxLines = 28;
-        const lastPageMaxLines = 16; 
+        // Rest of the pages constraint: strictly at most 30 text lines.
+        const maxLines = 30;
+        const lastPageMaxLines = 18; 
         
         let remainingLines = 0;
         for (let i = currentIdx; i < rows.length; i++) {
           remainingLines += estimateLines(rows[i]);
         }
         
+        // If all remaining rows can fit on this last page along with Tax Summary & Footer
         if (remainingLines <= lastPageMaxLines) {
           currentCapacity = remainingRows;
         } else {
@@ -140,13 +204,10 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
             }
             linesCount += itemLines;
             currentCapacity++;
-            if (linesCount >= prefLines) {
-              break;
-            }
           }
           
-          if (currentCapacity === remainingRows) {
-             currentCapacity = Math.max(1, remainingRows - 1);
+          if (currentCapacity === remainingRows && remainingLines > lastPageMaxLines && remainingRows > 1) {
+            currentCapacity = remainingRows - 1;
           }
         }
       }
@@ -195,8 +256,8 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
   const overallTaxPct = isInterState ? Number(invoice.items?.[0]?.igst_per || 0) : Number(invoice.items?.[0]?.cgst_per || 0);
 
   return (
-    <div className="bg-gray-100 py-8 print:bg-white print:py-0">
-      <div ref={measureRef} className="absolute top-[-9999px] left-[-9999px] w-[900px] pointer-events-none opacity-0">
+    <div className="bg-gray-100 py-8 print:bg-white print:py-0 print:m-0 print:h-auto">
+      <div ref={measureRef} className="absolute top-[-9999px] left-[-9999px] w-[900px] pointer-events-none opacity-0 print:hidden">
         <div className="measure-header"><Header invoice={invoice} pageNumber={1} totalPages={1} /></div>
         <div className="measure-vehicle"><VehicleDetails invoice={invoice} /></div>
         <table className="w-full">
@@ -225,9 +286,9 @@ export default function TaxInvoice({ apiUrl = "/mockInvoice.json" }) {
         return (
           <div
             key={page.pageNumber}
-            className="print-page-container relative mx-auto max-w-[900px] bg-white p-8 text-[13px] leading-[1.25] text-black shadow print:shadow-none print:p-0 font-sans mb-8 print:mb-0 print:break-after-page flex flex-col justify-between min-h-[1050px] print:min-h-0 pb-10"
+            className="print-page-container relative mx-auto max-w-[900px] w-full bg-white p-8 text-[9pt] leading-normal text-black shadow print:shadow-none print:p-0 font-sans mb-8 print:mb-0 print:break-after-page flex flex-col justify-between min-h-[1050px] print:min-h-[250mm] print:h-[250mm] print:max-h-[250mm] print:break-inside-avoid print:bg-white pb-8 print:pb-0 overflow-x-hidden"
           >
-            <div className="pb-8">
+            <div className="flex-1 flex flex-col print:pb-0">
               <Header invoice={invoice} pageNumber={page.pageNumber} totalPages={page.totalPages} isSpareInvoice={isSpareInvoice} />
               {isFirstPage && <VehicleDetails invoice={invoice} />}
               <ItemsTable

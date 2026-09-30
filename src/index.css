@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
   --font-serif: "Merriweather", Georgia, serif;
 }
 
@@ -15,8 +15,9 @@ body {
 body {
   font-family: var(--font-sans);
   color: #000000;
-  /* font-weight: 450; */
   background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   -webkit-print-color-adjust: exact !important;
   print-color-adjust: exact !important;
@@ -34,7 +35,10 @@ body {
 
 @media print {
   html,
-  body {
+  body,
+  #root,
+  #root > div,
+  main {
     width: 210mm !important;
     min-width: 210mm !important;
 
@@ -42,6 +46,7 @@ body {
     padding: 0 !important;
 
     background: #fff !important;
+    background-color: #fff !important;
 
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -70,25 +75,33 @@ body {
   .print-page-container {
     position: relative !important;
 
-    width: 200mm !important;
-    max-width: 200mm !important;
-    min-width: 200mm !important;
+    width: 190mm !important;
+    max-width: 190mm !important;
+    min-width: 190mm !important;
 
-    height: 270mm !important;
-    max-height: 270mm !important;
+    /* A4 height 297mm - 37mm top margin - 10mm bottom margin = 250mm printable area */
+    height: 250mm !important;
+    max-height: 250mm !important;
+    min-height: 250mm !important;
 
     margin-left: auto !important;
     margin-right: auto !important;
 
     padding: 0 !important;
 
+    background: #fff !important;
+    background-color: #fff !important;
+
     box-shadow: none !important;
 
-    overflow: hidden !important;
+    overflow: visible !important;
 
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
+
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
 
     page-break-after: always !important;
     break-after: page !important;
@@ -96,14 +109,11 @@ body {
 
 
   .print-meta-footer {
-    position: absolute !important;
-
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
     width: 100% !important;
-
     background: #fff !important;
   }
 

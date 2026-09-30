@@ -29,18 +29,23 @@ export async function fetchInvoiceData() {
     const id = params.get("id");
 
     if (!id) {
-        throw new Error("Invoice ID is missing");
+        return mockInvoice.data ?? mockInvoice;
     }
 
-    const response = await fetch(
-        `https://aliceblue-owl-869729.hostingersite.com/invoices/pdf-json/${id}`
-    );
+    try {
+        const response = await fetch(
+            `https://aliceblue-owl-869729.hostingersite.com/invoices/pdf-json/${id}`
+        );
 
-    if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+        if (!response.ok) {
+            console.warn(`Request failed with status ${response.status}, falling back to mockInvoice`);
+            return mockInvoice.data ?? mockInvoice;
+        }
+        console.log("Response from API:", response);
+        const result = await response.json();
+        return result.data ?? result;
+    } catch (err) {
+        console.warn("API fetch error, falling back to mockInvoice:", err);
+        return mockInvoice.data ?? mockInvoice;
     }
-    console.log("Response from API:", response);
-    const result = await response.json();
-
-    return result.data ?? result;
 }
